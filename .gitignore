@@ -1,0 +1,137 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+frontend/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+**/venv/
+
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+#ip
+# ip.py
+# ip.tsx
+frontend/node_modules*.so
+*.dylib
+.DS_Store
+backend/__pycache__
+*.log
+backend/venv
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# ===================
+# Dependencies
+# ===================
+node_modules/
+.pnp/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+/node_modules
+/.pnp
+
+
+# Python virtual environment
+backend/venv/
+**/venv/
+
+# ===================
+# Build outputs
+# ===================
+/build/
+/dist/
+/out/
+frontend/.next/
+
+# ===================
+# Testing
+# ===================
+/coverage/
+
+# ===================
+# Logs and Debug
+# ===================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ===================
+# OS-specific
+# ===================
+.DS_Store
+Thumbs.db
+
+# ===================
+# Env files
+# ===================
+.env*
+!.env.example
+
+# ===================
+# Compiled binaries / artifacts
+# ===================
+*.so
+*.dylib
+*.tsbuildinfo
+next-env.d.ts
+*.pyc
+__pycache__/
+
+# ===================
+# Vercel
+# ===================
+.vercel/
+
+# ===================
+# Image or model blobs (optional)
+# ===================
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tflite
+*.h5
+*.onnx
