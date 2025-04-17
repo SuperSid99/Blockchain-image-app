@@ -2,7 +2,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { backend_ip } from "./ip";
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 
 
@@ -133,7 +134,7 @@ const ImageEncryptor = () => {
   
         // 👉 Send to backend
         try {
-          const res = await fetch(`${backend_ip}/upload`, {
+          const res = await fetch(`${apiUrl}/upload`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -6,7 +6,8 @@ import {decryptImage} from"./decrypt";
 
 import ImageViewer from "./image_viewer";
 
-import { backend_ip } from "./ip";
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function RetrieveDecrypt() {
   const [hash, setHash] = useState("");
@@ -17,7 +18,7 @@ export default function RetrieveDecrypt() {
 
   const handleRetrieve = async () => {
     try {
-      const response = await fetch(`${backend_ip}/retrieve/${hash}`);
+      const response = await fetch(`${apiUrl}/retrieve/${hash}`);
       const data = await response.json();
 
       console.log(data)

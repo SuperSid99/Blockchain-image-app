@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { backend_ip } from "./ip";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const ImageUpload = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -18,7 +18,7 @@ const ImageUpload = () => {
     console.log(formData)
 
     try {
-      const res = await fetch(`${backend_ip}/upload`, {
+      const res = await fetch(`${apiUrl}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -45,7 +45,7 @@ const ImageUpload = () => {
     formData.append("image", file);
   
     try {
-      const response = await fetch("http://127.0.0.1:8000/upload", {
+      const response = await fetch(`${apiUrl}/upload`, {
         method: "POST",
         body: formData,
       });
