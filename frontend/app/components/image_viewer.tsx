@@ -38,13 +38,46 @@ export default function ImageViewer({ pixelData }: Props) {
     }
 
     ctx.putImageData(imageData, 0, 0);
-    setImgURL(canvas.toDataURL()); // get base64 image
+//     setImgURL(canvas.toDataURL()); // get base64 image
+//   }, [pixelData]);
+
+//   return (
+//     <div>
+//       <canvas ref={canvasRef} style={{ display: "none" }} />
+//       {imgURL && <Image src={imgURL} alt="Decrypted" />}
+//     </div>
+//   );
+// }
+
+    // Convert to Blob and create object URL
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const objectURL = URL.createObjectURL(blob);
+        setImgURL((prevURL) => {
+          if (prevURL) URL.revokeObjectURL(prevURL); // clean up old URL
+          return objectURL;
+        });
+      }
+    });
+
+    // Cleanup on unmount
+    return () => {
+      if (imgURL) {
+        URL.revokeObjectURL(imgURL);
+      }
+    };
   }, [pixelData]);
 
   return (
     <div>
       <canvas ref={canvasRef} style={{ display: "none" }} />
-      {imgURL && <Image src={imgURL} alt="Decrypted" />}
+      {imgURL && (
+        <img
+          src={imgURL}
+          alt="Decrypted"
+          // style={{ objectFit: "contain" }}
+        />
+      )}
     </div>
   );
 }

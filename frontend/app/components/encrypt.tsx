@@ -102,24 +102,7 @@ function imageToPixelArray(image: HTMLImageElement): number[][][] {
 const ImageEncryptor = () => {
   const [file, setFile] = useState<File | null>(null);
   const [key, setKey] = useState("");
-
-  // const handleEncrypt = () => {
-  //   if (!file || !key) return;
-
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     const img = new Image();
-  //     img.onload = () => {
-  //       const pixelArray = imageToPixelArray(img);
-  //       const encrypted = encryptImageData(pixelArray, key);
-  //       console.log("Encrypted Image Data:", encrypted);
-  //       // TODO: send encrypted to backend
-  //     };
-  //     if (typeof reader.result === "string") img.src = reader.result;
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
-
+  const [hash, setHash] = useState(""); // 🔹 New state for hash
 
   const handleEncrypt = async () => {
     if (!file || !key) return;
@@ -145,11 +128,26 @@ const ImageEncryptor = () => {
             }),
           });
   
+
+
           const result = await res.json();
-          console.log("Response from backend:", result);
+          console.log("Server response:", result);
+    
+          // 🔹 Update hash state from server response
+          if (typeof result === "string") {
+            setHash(result);
+          } else {
+            console.warn("No hash in response");
+          }
         } catch (err) {
-          console.error("Failed to send data to backend", err);
+          console.error("Upload failed:", err);
         }
+
+        //   const result = await res.json();
+        //   console.log("Response from backend:", result);
+        // } catch (err) {
+        //   console.error("Failed to send data to backend", err);
+        // }
       };
       if (typeof reader.result === "string") img.src = reader.result;
     };
@@ -162,6 +160,12 @@ const ImageEncryptor = () => {
       <input type="file" accept="image/*" onChange={e => setFile(e.target.files?.[0] || null)} />
       <input type="text" placeholder="Enter key" value={key} onChange={e => setKey(e.target.value)} />
       <button onClick={handleEncrypt}>Encrypt & Send</button>
+
+      <div className="mt-4 break-words">
+        <h3 className="font-semibold">Hash Value:</h3>
+        <p className="text-xl text-white-100">{hash || "No hash yet."}</p>
+        {/* <p className="text-xl text-white-100">{"No hash yet."}</p> */}
+      </div>
     </div>
   );
 
