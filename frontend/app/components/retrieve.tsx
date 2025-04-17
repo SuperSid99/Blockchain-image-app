@@ -88,9 +88,11 @@ export default function RetrieveDecrypt() {
 
       {error && <p className="text-red-500">{error}</p>}
 
-      <div className="size-[30%]">
-        <ImageViewer pixelData={imageData} />
-      </div>
+      {imageData !== null && (
+        <div className="size-[30%]">
+          <ImageViewer pixelData={imageData} />
+        </div>
+      )}
     </div>
   );
 }
