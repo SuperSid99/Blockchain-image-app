@@ -85,6 +85,10 @@ const ImageUpload = () => {
       >
         Upload to Blockchain
       </button>
+
+      <div className="size-[30%]">
+        <h3>hash value should be here</h3>
+      </div>
     </div>
   );
 };
