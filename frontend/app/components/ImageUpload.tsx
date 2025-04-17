@@ -31,32 +31,32 @@ const ImageUpload = () => {
   };
 
 
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  // const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (!file) return;
   
-    const validFormats = ["image/jpeg", "image/png", "image/bmp", "image/tiff"];
-    if (!validFormats.includes(file.type)) {
-      alert("Invalid file format! Please upload an image (JPG, PNG, BMP, or TIFF).");
-      return;
-    }
+  //   const validFormats = ["image/jpeg", "image/png", "image/bmp", "image/tiff"];
+  //   if (!validFormats.includes(file.type)) {
+  //     alert("Invalid file format! Please upload an image (JPG, PNG, BMP, or TIFF).");
+  //     return;
+  //   }
   
-    const formData = new FormData();
-    formData.append("image", file);
+  //   const formData = new FormData();
+  //   formData.append("image", file);
   
-    try {
-      const response = await fetch(`${apiUrl}/upload`, {
-        method: "POST",
-        body: formData,
-      });
+  //   try {
+  //     const response = await fetch(`${apiUrl}/upload`, {
+  //       method: "POST",
+  //       body: formData,
+  //     });
   
-      const data = await response.json();
-      alert(`Image uploaded successfully! Blockchain Hash: ${data.hash}`);
-    } catch (error) {
-      console.error("Upload failed:", error);
-      alert("Failed to upload image.");
-    }
-  };
+  //     const data = await response.json();
+  //     alert(`Image uploaded successfully! Blockchain Hash: ${data.hash}`);
+  //   } catch (error) {
+  //     console.error("Upload failed:", error);
+  //     alert("Failed to upload image.");
+  //   }
+  // };
 
   return (
     <div className="p-4 text-center  flex flex-col justify-between items-center">

@@ -12,7 +12,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function RetrieveDecrypt() {
   const [hash, setHash] = useState("");
   const [key, setKey] = useState("");
-  const [encryptedData, setEncryptedData] = useState<string | null>(null);
+  // const [encryptedData, setEncryptedData] = useState<string | null>(null);
   const [imageData, setImageData] = useState<number[][][] | null>(null);
   const [error, setError] = useState("");
 
@@ -30,11 +30,11 @@ export default function RetrieveDecrypt() {
 
       if (data.error) {
         setError(data.error);
-        setEncryptedData(null);
+        // setEncryptedData(null);
         return;
       }
       
-      setEncryptedData(data);
+      // setEncryptedData(data);
       setError("");
       // console.log("here")
       
@@ -55,7 +55,7 @@ export default function RetrieveDecrypt() {
 
     } catch (err) {
       setError("Error fetching image data.");
-      setEncryptedData(null);
+      // setEncryptedData(null);
     }
   };
 

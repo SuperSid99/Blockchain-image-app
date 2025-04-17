@@ -1,10 +1,10 @@
 "use client"; 
 
-import Header from "./components/Header.js";
-import ImageUpload from "./components/ImageUpload";
-import BlockchainStatus from "./components/BlockchainStatus.js";
-import ResearchProject from "./components/project.js";
-import { useState } from "react";
+// import Header from "./components/Header.js";
+// import ImageUpload from "./components/ImageUpload";
+// import BlockchainStatus from "./components/BlockchainStatus.js";
+// import ResearchProject from "./components/project.js";
+// import { useState } from "react";
 
 
 import ImageEncryptor from "./components/encrypt";

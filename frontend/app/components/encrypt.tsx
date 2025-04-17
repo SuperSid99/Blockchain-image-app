@@ -22,7 +22,7 @@ export function generateKey(key: string): Record<string, string> {
       }
     }
 
-    let loop = 10 - Object.keys(dic).length;
+    const loop = 10 - Object.keys(dic).length;
 
     for (let i = 0; i < loop; i++) {
       let found = false;
