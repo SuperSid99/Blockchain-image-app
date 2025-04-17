@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Image from 'next/image';
+// import Image from 'next/image';
 
 interface Props {
   pixelData: number[][][]; // Your decrypted RGB data
