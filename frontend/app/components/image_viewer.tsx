@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Image from 'next/image';
 
 interface Props {
   pixelData: number[][][]; // Your decrypted RGB data
@@ -43,7 +44,7 @@ export default function ImageViewer({ pixelData }: Props) {
   return (
     <div>
       <canvas ref={canvasRef} style={{ display: "none" }} />
-      {imgURL && <img src={imgURL} alt="Decrypted" />}
+      {imgURL && <Image src={imgURL} alt="Decrypted" />}
     </div>
   );
 }

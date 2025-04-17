@@ -53,7 +53,7 @@ export default function RetrieveDecrypt() {
       }
 
 
-    } catch (err) {
+    } catch (error) {
       setError("Error fetching image data.");
       // setEncryptedData(null);
     }
