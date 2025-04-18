@@ -10,13 +10,11 @@ function TypingAnimation() {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-
-    intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       const randomChar = String.fromCharCode(33 + Math.floor(Math.random() * 94)); // ASCII 33-126
       setText(prev => (prev.length > 40 ? randomChar : prev + randomChar));
     }, 50);
-
+  
     return () => clearInterval(intervalId);
   }, []);
 
