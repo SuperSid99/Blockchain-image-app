@@ -1,11 +1,47 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 
+function TypingAnimation() {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    intervalId = setInterval(() => {
+      const randomChar = String.fromCharCode(33 + Math.floor(Math.random() * 94)); // ASCII 33-126
+      setText(prev => (prev.length > 40 ? randomChar : prev + randomChar));
+    }, 50);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <div className="flex flex-row items-center">
+
+    <div className="mt-4 text-White-500 font-mono text-sm h-6">
+      <h3 className="font-semibold">
+      Encrypting Data:  
+      </h3>
+    </div>
+    <div className="mt-4 text-green-500 font-mono text-sm h-6">
+      <h3 className="font-semibold">{text}</h3>
+    </div>
+
+
+
+
+    {/* <div className="mt-4 text-green-500 font-mono text-sm h-6 overflow-hidden">
+      <h3 className="font-semibold">Encrypting Data: {text}</h3>
+    </div> */}
+
+    </div>
+  );
+}
 
 export function generateKey(key: string): Record<string, string> {
     const dic: Record<string, string> = {};
@@ -104,6 +140,8 @@ const ImageEncryptor = () => {
   const [key, setKey] = useState("");
   const [hash, setHash] = useState(""); // 🔹 New state for hash
 
+  const [loading, setLoading] = useState(false);
+
   const handleEncrypt = async () => {
     if (!file || !key) return;
   
@@ -111,10 +149,12 @@ const ImageEncryptor = () => {
     reader.onload = () => {
       const img = new Image();
       img.onload = async () => {
+        setLoading(true)
         const pixelArray = imageToPixelArray(img);
         const encrypted = encryptImageData(pixelArray, key);
         // console.log("Encrypted Image Data:", encrypted);
-  
+
+
         // 👉 Send to backend
         try {
           const res = await fetch(`${apiUrl}/upload`, {
@@ -141,6 +181,8 @@ const ImageEncryptor = () => {
           }
         } catch (err) {
           console.error("Upload failed:", err);
+        }  finally {
+          setLoading(false); // ✅ Stop loading animation
         }
 
         //   const result = await res.json();
@@ -161,11 +203,11 @@ const ImageEncryptor = () => {
       <input type="text" placeholder="Enter key" value={key} onChange={e => setKey(e.target.value)} />
       <button onClick={handleEncrypt}>Encrypt & Send</button>
 
-      <div className="mt-4 break-words">
-        <h3 className="font-semibold">Hash Value:</h3>
-        <p className="text-xl text-white-100">{hash || "No hash yet."}</p>
-        {/* <p className="text-xl text-white-100">{"No hash yet."}</p> */}
-      </div>
+      {loading && <TypingAnimation />}
+
+      {!loading && hash && (<div className="mt-4 break-words">
+        <h3 className="font-semibold">Hash Value:&emsp;{hash}</h3>
+      </div>)}
     </div>
   );
 

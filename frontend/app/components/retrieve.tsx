@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {decryptImage} from"./decrypt";
 
@@ -9,6 +9,37 @@ import ImageViewer from "./image_viewer";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+
+function TypingAnimation() {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    intervalId = setInterval(() => {
+      const randomChar = String.fromCharCode(33 + Math.floor(Math.random() * 94)); // ASCII 33-126
+      setText(prev => (prev.length > 40 ? randomChar : prev + randomChar));
+    }, 50);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center">
+
+    <div className="mt-4 text-White-500 font-mono text-sm h-6">
+      <h3 className="font-semibold">
+       Retrieving Data:
+      </h3>
+    </div>
+    <div className="mt-4 text-green-500 font-mono text-sm h-6">
+      <h3 className="font-semibold">{text}</h3>
+    </div>
+    </div>
+  );
+}
+
+
 export default function RetrieveDecrypt() {
   const [hash, setHash] = useState("");
   const [key, setKey] = useState("");
@@ -16,19 +47,27 @@ export default function RetrieveDecrypt() {
   const [imageData, setImageData] = useState<number[][][] | null>(null);
   const [error, setError] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const handleRetrieve = async () => {
     try {
+
+      setLoading(true)
       const response = await fetch(`${apiUrl}/retrieve/${hash}`);
       const data = await response.json();
 
       console.log(data)
       
       if(data=="no results found"){
+
+        setLoading(false); // ✅ Stop loading animation
         setError("Wrong hash");
         return
       }
 
       if (data.error) {
+
+        setLoading(false); // ✅ Stop loading animation
         setError(data.error);
         // setEncryptedData(null);
         return;
@@ -45,10 +84,13 @@ export default function RetrieveDecrypt() {
       if (typeof(check_key)== "string"){
         
         console.log("wrong key")
+
+        setLoading(false); // ✅ Stop loading animation
         setImageData([[[]]])
         setError("wrong key");
       }
       else{
+        setLoading(false); // ✅ Stop loading animation
         setImageData(check_key)
       }
 
@@ -56,6 +98,8 @@ export default function RetrieveDecrypt() {
     } catch (error) {
       setError(`Error fetching image data. : ${error}`);
       // setEncryptedData(null);
+    }  finally {
+      setLoading(false); // ✅ Stop loading animation
     }
   };
 
@@ -88,7 +132,9 @@ export default function RetrieveDecrypt() {
 
       {error && <p className="text-red-500">{error}</p>}
 
-      {imageData !== null && (
+      {loading && <TypingAnimation />}
+
+      {!loading && imageData !== null && (
         <div className="size-[30%]">
           <ImageViewer pixelData={imageData} />
         </div>
