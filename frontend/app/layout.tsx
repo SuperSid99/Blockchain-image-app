@@ -20,10 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.className} antialiased bg-black text-white min-h-screen w-full overflow-x-hidden`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {children}
-        </div>
+      <body
+        className={`${lato.className} antialiased bg-black text-white min-h-screen w-full overflow-x-hidden`}
+      >
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
       </body>
     </html>
   );
