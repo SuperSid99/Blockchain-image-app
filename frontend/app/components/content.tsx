@@ -149,8 +149,8 @@ return (
                 To allow users to retrieve an image without uploading one, I&apos;m making the hash and the key of the first block public.
               </p>
               <ul className="list-disc list-inside text-gray-400 pl-2">
-                <li>Hash : e6194608b69af9b728f841c4795e81a549b866c27dc9642eff2a3b9f2b5cf14f</li>
-                <li>Key : cat rizz</li>
+                <li><span className="break-words">Hash : 48da144330e9bf029be3d8c6695c0711ee941060e4e53c574418e97658cd303c</span></li>
+                <li>Key : open block</li>
               </ul>
               <p className="text-xs text-gray-200">
                 Since this is a demo and I host this blockchain on a single node using a Raspberry Pi, there is a limit to how much data I can store. I might clear it out at certain points to allow newer blocks to be added. 
