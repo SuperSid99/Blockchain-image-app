@@ -1,8 +1,6 @@
 "use client"; 
 
 import Content from "./components/content";
-import ImageEncryptor from "./components/encrypt";
-import RetrieveDecrypt from "./components/retrieve";
 
 export default function Home() {
   return (

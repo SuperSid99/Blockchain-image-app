@@ -61,7 +61,7 @@ export default function Content() {
           </ul>
 
           <p className="text-gray-200">
-            To allow users to retrieve an image without uploading one, I'm makink the hash and the key of the first block public.
+            To allow users to retrieve an image without uploading one, I&apos;m making the hash and the key of the first block public.
           </p>
           <ul className="list-disc list-inside text-gray-400 pl-2">
             <li>Hash : e6194608b69af9b728f841c4795e81a549b866c27dc9642eff2a3b9f2b5cf14f</li>

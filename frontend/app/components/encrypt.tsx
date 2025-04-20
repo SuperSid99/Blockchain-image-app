@@ -195,11 +195,11 @@ const ImageEncryptor = () => {
         if (!file) return;
 
         const maxSize = 1 * 1024 * 1024; // 1MB
-        // if (file.size > maxSize) {
-        //   alert("Image size should be less than 1MB");
-        //   e.target.value = ""; // Reset the input
-        //   return;
-        // }
+        if (file.size > maxSize) {
+          alert("Image size should be less than 1MB");
+          e.target.value = ""; // Reset the input
+          return;
+        }
 
         setFile(file); // Proceed to store or use the file
       }}
