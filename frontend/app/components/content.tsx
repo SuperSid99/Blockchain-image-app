@@ -146,7 +146,7 @@ return (
               </ul>
   
               <p className="text-gray-200">
-                To allow users to retrieve an image without uploading one, I'm making the hash and the key of the first block public.
+                To allow users to retrieve an image without uploading one, I&apos;m making the hash and the key of the first block public.
               </p>
               <ul className="list-disc list-inside text-gray-400 pl-2">
                 <li>Hash : </li>
