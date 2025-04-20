@@ -29,14 +29,6 @@ function TypingAnimation() {
     <div className="mt-4 text-green-500 font-mono text-sm h-6">
       <h3 className="font-semibold">{text}</h3>
     </div>
-
-
-
-
-    {/* <div className="mt-4 text-green-500 font-mono text-sm h-6 overflow-hidden">
-      <h3 className="font-semibold">Encrypting Data: {text}</h3>
-    </div> */}
-
     </div>
   );
 }
@@ -182,12 +174,6 @@ const ImageEncryptor = () => {
         }  finally {
           setLoading(false); // ✅ Stop loading animation
         }
-
-        //   const result = await res.json();
-        //   console.log("Response from backend:", result);
-        // } catch (err) {
-        //   console.error("Failed to send data to backend", err);
-        // }
       };
       if (typeof reader.result === "string") img.src = reader.result;
     };
@@ -196,16 +182,65 @@ const ImageEncryptor = () => {
   
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={e => setFile(e.target.files?.[0] || null)} />
-      <input type="text" placeholder="Enter key" value={key} onChange={e => setKey(e.target.value)} />
-      <button onClick={handleEncrypt}>Encrypt & Send</button>
 
-      {loading && <TypingAnimation />}
+    <div className="space-y-6 bg-gray-900 p-6 rounded-2xl shadow-md border border-gray-700 max-w-xl mx-auto mt-12">
+  {/* File Upload */}
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">Upload Image (Max: 1MB)</label>
+    <input
+      type="file"
+      accept="image/*"
+      onChange={(e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
 
-      {!loading && hash && (<div className="mt-4 break-words">
-        <h3 className="font-semibold">Hash Value:&emsp;{hash}</h3>
-      </div>)}
+        const maxSize = 1 * 1024 * 1024; // 1MB
+        // if (file.size > maxSize) {
+        //   alert("Image size should be less than 1MB");
+        //   e.target.value = ""; // Reset the input
+        //   return;
+        // }
+
+        setFile(file); // Proceed to store or use the file
+      }}
+      className="block w-full text-sm text-gray-300 bg-gray-800 border border-gray-600 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    />
+  </div>
+
+  {/* Key Input */}
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">Encryption Key</label>
+    <input
+      type="text"
+      placeholder="Enter key"
+      value={key}
+      onChange={(e) => setKey(e.target.value)}
+      className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    />
+  </div>
+
+  {/* Submit Button */}
+  <div>
+    <button
+      onClick={handleEncrypt}
+      className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
+    >
+      🔐 Encrypt & Send
+    </button>
+  </div>
+
+  {/* Animation or Hash */}
+  <div className="mt-4">
+    {loading && <TypingAnimation />}
+    {!loading && hash && (
+      <div className="break-words bg-gray-800 text-gray-200 p-4 rounded-lg border border-cyan-600">
+        <h3 className="font-semibold text-cyan-400">
+          Hash Value:
+        </h3>
+        <p className="mt-2 text-sm text-gray-300">{hash}</p>
+      </div>
+    )}
+  </div>
     </div>
   );
 

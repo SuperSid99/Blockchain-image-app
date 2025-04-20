@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
-// import { Geist, Geist_Mono, Lato } from "next/font/google";
 import "./globals.css";
-
-// const geistSans = Geist({
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   subsets: ["latin"],
-// });
 
 const lato = Lato({
   weight: ["100", "300", "400"],
@@ -29,8 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.className} antialiased`}>
-        {children}
+      <body className={`${lato.className} antialiased bg-black text-white min-h-screen w-full overflow-x-hidden`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -41,13 +41,13 @@ function TypingAnimation() {
 export default function RetrieveDecrypt() {
   const [hash, setHash] = useState("");
   const [key, setKey] = useState("");
-  // const [encryptedData, setEncryptedData] = useState<string | null>(null);
   const [imageData, setImageData] = useState<number[][][] | null>(null);
   const [error, setError] = useState("");
-
+  
   const [loading, setLoading] = useState(false);
-
+  
   const handleRetrieve = async () => {
+    setError("");
     try {
 
       setLoading(true)
@@ -67,16 +67,10 @@ export default function RetrieveDecrypt() {
 
         setLoading(false); // ✅ Stop loading animation
         setError(data.error);
-        // setEncryptedData(null);
         return;
       }
       
-      // setEncryptedData(data);
       setError("");
-      // console.log("here")
-      
-      
-      // console.log(typeof(data))
       const check_key= decryptImage(data,key)
       
       if (typeof(check_key)== "string"){
@@ -102,41 +96,57 @@ export default function RetrieveDecrypt() {
   };
 
   return (
-    <div className="space-y-4 flex flex-col items-center">
-      <h2 className="text-xl font-semibold">Retrieve Encrypted Image</h2>
+    <div className="space-y-6 bg-gray-900 p-6 rounded-2xl shadow-md border border-gray-700 max-w-xl mx-auto mt-12">
+  <h2 className="text-2xl font-bold text-cyan-400 text-center">
+    🔍 Retrieve Encrypted Image
+  </h2>
 
-      <input
-        type="text"
-        placeholder="Enter hash"
-        value={hash}
-        onChange={(e) => setHash(e.target.value)}
-        className="border p-2 w-80 rounded"
-      />
+  {/* Hash Input */}
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">Hash</label>
+    <input
+      type="text"
+      placeholder="Enter hash"
+      value={hash}
+      onChange={(e) => setHash(e.target.value)}
+      className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    />
+  </div>
 
-      <input
-        type="text"
-        placeholder="key"
-        value={key}
-        onChange={(e) => setKey(e.target.value)}
-        className="border p-2 w-80 rounded"
-      />
+  {/* Key Input */}
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">Decryption Key</label>
+    <input
+      type="text"
+      placeholder="Enter key"
+      value={key}
+      onChange={(e) => setKey(e.target.value)}
+      className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    />
+  </div>
 
-      <button
-        onClick={handleRetrieve}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Retrieve
-      </button>
+  {/* Retrieve Button */}
+  <button
+    onClick={handleRetrieve}
+    className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
+  >
+    🔓 Retrieve
+  </button>
 
-      {error && <p className="text-red-500">{error}</p>}
+  {/* Error Message */}
+  {error && (
+    <p className="text-red-500 font-medium text-center">{error}</p>
+  )}
 
-      {loading && <TypingAnimation />}
+  {/* Loading Animation */}
+  {loading && <TypingAnimation />}
 
-      {!loading && imageData !== null && (
-        <div className="size-[30%]">
-          <ImageViewer pixelData={imageData} />
-        </div>
-      )}
+  {/* Image Viewer */}
+  {!loading && imageData !== null && (
+    <div className="mt-4 border border-gray-700 rounded-lg p-4 bg-gray-800">
+      <ImageViewer pixelData={imageData} />
     </div>
+  )}
+</div>
   );
 }
