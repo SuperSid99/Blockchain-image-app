@@ -5,6 +5,8 @@ import { useState } from "react";
 import ImageEncryptor from "./encrypt";
 import RetrieveDecrypt from "./retrieve";
 
+import StickySidebar from './stickysidebar';
+
 export default function Content() {
 
 const [expanded_paper, setExpanded_paper] = useState(false);
@@ -13,6 +15,10 @@ const [expanded_framework, setExpanded_framework] = useState(false);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white">
+
+    
+<StickySidebar />
+
       <div className="w-screen flex flex-col items-center">
         <div className="max-w-4xl space-y-8 p-8 w-full">
   
@@ -133,6 +139,7 @@ const [expanded_framework, setExpanded_framework] = useState(false);
         </div>
       </div>
     </main>
+    
   );
   
 //   );
