@@ -9,7 +9,7 @@ export default function Content() {
 
 const [expanded_paper, setExpanded_paper] = useState(false);
 const [expanded_framework, setExpanded_framework] = useState(false);
-const [expanded_contributions, setExpanded_contributions] = useState(false);
+// const [expanded_contributions, setExpanded_contributions] = useState(false);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white">
