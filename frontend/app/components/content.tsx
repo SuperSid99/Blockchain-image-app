@@ -5,6 +5,18 @@ import { useState } from "react";
 import ImageEncryptor from "./encrypt";
 import RetrieveDecrypt from "./retrieve";
 
+import Link from 'next/link';
+import {
+  LogoGithub,
+  LogoLinkedin,
+//   MailOutline,
+  HomeOutline,
+  MenuOutline,
+  CloseOutline,
+  DocumentOutline,
+} from 'react-ionicons';
+
+
 import StickySidebar from './stickysidebar';
 
 export default function Content() {
@@ -32,11 +44,11 @@ const [expanded_framework, setExpanded_framework] = useState(false);
             <section className="space-y-4 border-l-4 border-cyan-500 pl-6">
               <h2 className="text-2xl font-semibold text-cyan-300">📄 A glimpse behind the research.</h2>
               <p className="text-gray-200">
-        As a part of my undergraduate program I published a research paper titled <span className="italic">“A Blockchain-Based Private Framework for Facilitating Digital Forensics Using IoT”. </span>
+        As a part of my undergraduate program, I published a research paper titled <span className="italic">“A Blockchain-Based Private Framework for Facilitating Digital Forensics Using IoT”. </span>
         The paper explores a novel way of leveraging blockchain to preserve the integrity of digital evidence in real-time, especially from resource-constrained IoT environments.
       </p>
           <p className="text-gray-200">
-            The Idea of the paper is to:
+            The idea of the paper is to:
           </p>
       {!expanded_paper ? (
         <button
@@ -75,8 +87,8 @@ const [expanded_framework, setExpanded_framework] = useState(false);
             <section className="space-y-4 border-l-4 border-purple-500 pl-6">
               <h2 className="text-2xl font-semibold text-purple-300">🛠️ The Framework</h2>
               <p className="text-gray-200">
-                This app is supposed to be a little demo of the framework presented in the paper. 
-                The frontend acts as an access point allowing users to upload an image, encrypt it, store it on a privately hosted blockchain network, and retrieve it using its hash. 
+                This app is supposed to be a demo of the framework presented in the paper. 
+                The frontend acts as an access point, allowing users to upload an image, encrypt it, store it on a privately hosted blockchain network, and retrieve it using its hash. 
               </p>
           <p className="text-gray-200">
               How it works:
@@ -105,7 +117,7 @@ const [expanded_framework, setExpanded_framework] = useState(false);
                 <li>Key : open block</li>
               </ul>
               <p className="text-xs text-gray-200">
-                Since this is a demo and I host this blockchain on a single node using a Raspberry Pi, there is a limit to how much data I can store. I might clear it out at certain points to allow newer blocks to be added. 
+                Since this is a demo, and because I host the blockchain on a single node using a Raspberry Pi, there is a limit to how much data I can store. I might clear it out at certain points to allow newer blocks to be added. 
                 I have also added a cap of 1 MB to the images that can be added to the blockchain.
               </p>
 
@@ -126,16 +138,29 @@ const [expanded_framework, setExpanded_framework] = useState(false);
             <section className="space-y-4 border-l-4 border-green-500 pl-6">
               <h2 className="text-2xl font-semibold text-green-300">🧠 My Contribution</h2>
               <p className="text-gray-200">
-                Beyond writing the paper, I developed the core logic, security mechanism, and data structures powering this framework. The goal was to bridge theory and implementation for real-world impact.
+                Beyond leading the team, I developed the core logic, security and encrypting mechanism, and the architecture powering the proposed framework. 
+                The goal was to create a way to store digital evidence in a way that makes it tamper-proof and immutable.
               </p>
               <ul className="list-disc list-inside text-gray-400 pl-2">
-                <li>Implemented SHA-256 based block hashing in Python</li>
-                <li>Used symmetric encryption to protect uploaded image data</li>
-                <li>Designed the block structure to include metadata like timestamp and previous hash</li>
-                <li>Built a simple yet functional chain validation mechanism</li>
+                <li>Implemented SHA-256 based block hashing in Python.</li>
+                <li>Used a mixed cipher encryption protocol to protect uploaded image data.</li>
+                <li>Applied multi-step encryption unique to each node to prevent man in the middle attacks.</li>
+                <li>Designed the block structure to include metadata like timestamp and previous hash.</li>
+                <li>Built a simple yet functional chain validation mechanism.</li>
+                <li>Used VPNs to create a private network inaccessible to the internet.</li>
               </ul>
             </section>
           </div>
+            <div className=" text-center text-white z-50">
+              <p className="text-lg">Reach out to me at:</p>
+              <a
+                href="mailto:siddharth22sharma@gmail.com"
+                title="Email"
+                className="text-white hover:underline text-lg"
+              >
+                siddharth22sharma@gmail.com
+              </a>
+            </div>
         </div>
       </div>
     </main>
