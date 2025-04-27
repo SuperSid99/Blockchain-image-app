@@ -5,17 +5,6 @@ import { useState } from "react";
 import ImageEncryptor from "./encrypt";
 import RetrieveDecrypt from "./retrieve";
 
-import Link from 'next/link';
-import {
-  LogoGithub,
-  LogoLinkedin,
-//   MailOutline,
-  HomeOutline,
-  MenuOutline,
-  CloseOutline,
-  DocumentOutline,
-} from 'react-ionicons';
-
 
 import StickySidebar from './stickysidebar';
 
