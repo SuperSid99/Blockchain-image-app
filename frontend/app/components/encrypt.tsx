@@ -142,7 +142,6 @@ const ImageEncryptor = () => {
         setLoading(true)
         const pixelArray = imageToPixelArray(img);
         const encrypted = encryptImageData(pixelArray, key);
-        // console.log("Encrypted Image Data:", encrypted);
 
 
         // 👉 Send to backend
@@ -161,7 +160,6 @@ const ImageEncryptor = () => {
 
 
           const result = await res.json();
-          console.log("Server response:", result);
     
           // 🔹 Update hash state from server response
           if (typeof result === "string") {

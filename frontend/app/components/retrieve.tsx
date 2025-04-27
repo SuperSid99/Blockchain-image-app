@@ -54,7 +54,6 @@ export default function RetrieveDecrypt() {
       const response = await fetch(`${apiUrl}/retrieve/${hash}`);
       const data = await response.json();
 
-      console.log(data)
       
       if(data=="no results found"){
 
@@ -75,7 +74,6 @@ export default function RetrieveDecrypt() {
       
       if (typeof(check_key)== "string"){
         
-        console.log("wrong key")
 
         setLoading(false); // ✅ Stop loading animation
         setImageData([[[]]])
