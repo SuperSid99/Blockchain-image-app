@@ -136,7 +136,7 @@ const [expanded_framework, setExpanded_framework] = useState(false);
                 <li>Applied multi-step encryption unique to each node to prevent man in the middle attacks.</li>
                 <li>Designed the block structure to include metadata like timestamp and previous hash.</li>
                 <li>Built a simple yet functional chain validation mechanism.</li>
-                <li>Used VPNs to create a private network inaccessible to the internet.</li>
+                <li>Used VPNs to create a private network isolated from the public internet.</li>
               </ul>
             </section>
           </div>
