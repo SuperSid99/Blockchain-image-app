@@ -7,6 +7,7 @@ import RetrieveDecrypt from "./retrieve";
 
 
 import StickySidebar from './stickysidebar';
+import Errortext from './Error_text';
 
 export default function Content() {
 
@@ -19,6 +20,7 @@ const [expanded_framework, setExpanded_framework] = useState(false);
 
     
 <StickySidebar />
+<Errortext />
 
       <div className="w-screen flex flex-col items-center">
         <div className="max-w-4xl space-y-8 p-8 w-full">
@@ -72,7 +74,7 @@ const [expanded_framework, setExpanded_framework] = useState(false);
       )}
     </section>
   
-            {/* Section 3: The Working Framework */}
+
             <section className="space-y-4 border-l-4 border-purple-500 pl-6">
               <h2 className="text-2xl font-semibold text-purple-300">🛠️ The Framework</h2>
               <p className="text-gray-200">

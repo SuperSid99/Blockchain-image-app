@@ -51,7 +51,14 @@ export default function RetrieveDecrypt() {
     try {
 
       setLoading(true)
-      const response = await fetch(`${apiUrl}/retrieve/${hash}`);
+      const response = await fetch(`${apiUrl}/retrieve/${hash}`, {
+        method: "GET", // 🔥 Explicitly mention the method
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+
       const data = await response.json();
 
       
